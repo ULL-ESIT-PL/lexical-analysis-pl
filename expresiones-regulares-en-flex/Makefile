@@ -1,3 +1,5 @@
+spaces: spaces.l 
+	flex spaces.l && gcc lex.yy.c && ./a.out
 subst: subst.c 
 	gcc -DYYDEBUG=1 -g -o subst subst.c 
 subst.c: subst.l 
@@ -9,4 +11,4 @@ yytext-array: yytext-array.l
 yytext-pointer: yytext-pointer.l 
 	flex yytext-pointer.l && gcc lex.yy.c && ./a.out
 clean:
-	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete
+	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete 
