@@ -4,5 +4,7 @@ subst.c: subst.l
 	flex -o subst.c -l subst.l
 delete: delete.l 
 	flex delete.l && gcc lex.yy.c -lfl -o delete; ./delete
+yytext-array: yytext-array.l 
+	flex yytext-array.l && gcc lex.yy.c && ./a.out
 clean:
 	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete
