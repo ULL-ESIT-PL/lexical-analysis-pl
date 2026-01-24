@@ -1,8 +1,6 @@
 {
-   "name": "Flex Development Environment",
-   "postCreateCommand": [
-      "sudo apt-get update",
-      "sudo apt-get install -y flex" 
-   ]
+  "name": "Simple Codespace with Dockerfile",
+  "build": {
+    "dockerfile": "Dockerfile"
+  }
 }
-
