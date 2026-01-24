@@ -7,11 +7,11 @@ LDFLAGS    = -Og -g -fsanitize=address -fsanitize=undefined
 LDLIBS     = -lm
 TESTLDLIBS = -lm
 
-scanner: scanner.c scanner.h
-	gcc scanner_test.c scanner.c -o scanner_test
+testlexer: scanner.c scanner.h testlexer.c
+	gcc  -I. scanner.c testlexer.c -o testlexer
 
 # Run all tests.
 .PHONY: clean
 clean: 
-	rm -fR  *.o scanner_test
+	rm -fR  *.o testlexer
 
