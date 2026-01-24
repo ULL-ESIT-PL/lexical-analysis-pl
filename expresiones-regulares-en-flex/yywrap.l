@@ -1,4 +1,5 @@
 /* file: yywrap.l 
+See section yywrap() at the OCW course of ULL: https://campusvirtual.ull.es/ocw/mod/resource/view.php?id=1823
 Cuando el analizador léxico alcanza el final del fichero, 
 el comportamiento en las subsiguientes llamadas a yylex resulta indefinido. 
 En el momento en que yylex() alcanza el final del fichero llama a la función yywrap, 
