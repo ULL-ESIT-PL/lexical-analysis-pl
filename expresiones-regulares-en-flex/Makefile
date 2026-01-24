@@ -12,5 +12,7 @@ yytext-pointer: yytext-pointer.l
 	flex yytext-pointer.l && gcc lex.yy.c && ./a.out
 decl: decl.l 
 	flex decl.l && gcc lex.yy.c -o decl; ./decl
+yywrap: yywrap.l 
+	flex yywrap.l && gcc lex.yy.c -o yywrap; ./yywrap *.l
 clean:
-	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete decl
+	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete decl yywrap
