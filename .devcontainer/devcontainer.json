@@ -1,5 +1,5 @@
 {
    "name": "Flex Development Environment",
    "features": {},
-   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y flex build-essential bison"
+   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y flex"
 }
