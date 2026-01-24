@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "scanner.h"
 
+/* ⚠️ Important rule: The order of strings must match the enum exactly. If you change the enum for TokenTypein scanner.h, 
+update the table. A good practice is to never insert enum values in the middle once established. */
 const char* tokenTypeName(TokenType type) {
     static const char* names[] = {
         // Single-character tokens.
