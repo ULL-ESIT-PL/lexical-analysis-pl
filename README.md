@@ -6,4 +6,9 @@ See in the ULL OCW course [PROCESADORES DE LENGUAJES](https://campusvirtual.ull.
 
 ## Installing Flex in Codespaces
 
-See instructions in [INSTALL-FLEX-IN-CODESPACES.github-copilot.md](INSTALL-FLEX-IN-CODESPACES.github-copilot.md)
+To install Flex in a GitHub Codespace, you can add the following commands to your `.devcontainer/Dockerfile`:
+
+```Dockerfile
+# Install Flex
+RUN apt-get update && apt-get install -y flex
+``` 
