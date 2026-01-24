@@ -10,5 +10,7 @@ yytext-array: yytext-array.l
 	flex yytext-array.l && gcc lex.yy.c && ./a.out
 yytext-pointer: yytext-pointer.l 
 	flex yytext-pointer.l && gcc lex.yy.c && ./a.out
+decl: decl.l 
+	flex decl.l && gcc lex.yy.c -o decl; ./decl
 clean:
-	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete 
+	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete decl
