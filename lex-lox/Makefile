@@ -13,5 +13,5 @@ testlexer: scanner.c scanner.h testlexer.c
 # Run all tests.
 .PHONY: clean
 clean: 
-	rm -fR  *.o testlexer
+	rm -fR  *.o testlexer scanner_test
 
