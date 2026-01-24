@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include "scanner.h"
 
-int main(void) {
-    const char* source =
+int main(int argc, char* argv[]) {
+
+    char* source = (argc > 1) ? argv[1] : 
         "var x = 42;\n"
         "print x + 1;\n"
         "print \"hello world!\"";
