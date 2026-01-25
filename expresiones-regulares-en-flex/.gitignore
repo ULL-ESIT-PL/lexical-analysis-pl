@@ -3,3 +3,5 @@ lex.yy.c
 decl
 yywrap
 subst
+subst.c
+*.dSYM/

@@ -1,5 +1,3 @@
-spaces: spaces.l 
-	flex spaces.l && gcc lex.yy.c && ./a.out
 subst: subst.c 
 	gcc -DYYDEBUG=1 -g -o subst subst.c 
 subst.c: subst.l 
@@ -16,3 +14,7 @@ yywrap: yywrap.l
 	flex yywrap.l && gcc lex.yy.c -o yywrap; ./yywrap *.l
 clean:
 	- rm -fR subst.c subst -fR subst.dSYM a.out lex.yy.c delete decl yywrap
+
+spaces: spaces.l 
+	echo "Expected errors on spaces:"
+	flex spaces.l && gcc lex.yy.c && ./a.out
