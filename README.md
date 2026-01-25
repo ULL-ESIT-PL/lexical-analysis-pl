@@ -42,6 +42,8 @@ result =        5
 
 ## Testing the Java Lox Scanner
 
+Folder [java/com/craftinginterpreters/lox](java/com/craftinginterpreters/lox) contains the Java version of the Lox interpreter from the book [Crafting Interpreters](https://craftinginterpreters.com/).
+
 See file [java/com/craftinginterpreters/lox/ScannerTest.java](lox/java/com/craftinginterpreters/lox/ScannerTest.java) for a simple test of the lexical analyzer of the Lox interpreter in Java.
 
 Build the Java version:

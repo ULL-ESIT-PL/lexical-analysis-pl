@@ -1,13 +1,9 @@
 BUILD_DIR := build
-TOOL_SOURCES := tool/pubspec.lock $(shell find tool -name '*.dart')
+TOOL_SOURCES := XXXX
 BUILD_SNAPSHOT := $(BUILD_DIR)/build.dart.snapshot
 TEST_SNAPSHOT := $(BUILD_DIR)/test.dart.snapshot
 
 default: book clox jlox
-
-# Run dart pub get on tool directory.
-get:
-	@ cd ./tool; dart --version; dart pub get
 
 # Remove all build outputs and intermediate files.
 clean:
@@ -22,10 +18,6 @@ book: $(BUILD_SNAPSHOT)
 serve: $(BUILD_SNAPSHOT)
 	@ dart $(BUILD_SNAPSHOT) --serve
 
-$(BUILD_SNAPSHOT): $(TOOL_SOURCES)
-	@ mkdir -p build
-	@ echo "Compiling Dart snapshot..."
-	@ dart --version; dart --snapshot=$@ --snapshot-kind=app-jit tool/bin/build.dart >/dev/null
 
 # Run the tests for the final versions of clox and jlox.
 test: debug jlox $(TEST_SNAPSHOT)
@@ -51,11 +43,6 @@ test_java: jlox java_chapters $(TEST_SNAPSHOT)
 # Run the tests for every chapter's version of clox and jlox.
 test_all: debug jlox c_chapters java_chapters compile_snippets $(TEST_SNAPSHOT)
 	@ dart $(TEST_SNAPSHOT) all
-
-$(TEST_SNAPSHOT): $(TOOL_SOURCES)
-	@ mkdir -p build
-	@ echo "Compiling Dart snapshot..."
-	@ dart --snapshot=$@ --snapshot-kind=app-jit tool/bin/test.dart clox >/dev/null
 
 # Compile a debug build of clox.
 debug:
@@ -195,15 +182,6 @@ diffs: split_chapters java_chapters
 	@ -diff --new-file gen/chap28_methods/ gen/chap29_superclasses/ > build/diffs/chap29_superclasses.diff
 	@ -diff --new-file gen/chap29_superclasses/ gen/chap30_optimization/ > build/diffs/chap30_optimization.diff
 
-split_chapters:
-	@ dart tool/bin/split_chapters.dart
-
-compile_snippets:
-	@ dart tool/bin/compile_snippets.dart
-
-# Generate the XML for importing into InDesign.
-xml: $(TOOL_SOURCES)
-	@ dart --enable-asserts tool/bin/build_xml.dart
 
 .PHONY: book c_chapters clean clox compile_snippets debug default diffs \
 	get java_chapters jlox serve split_chapters test test_all test_c test_java
