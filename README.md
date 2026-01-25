@@ -4,11 +4,35 @@ See the ULL OCW course [PROCESADORES DE LENGUAJES](https://campusvirtual.ull.es/
 
 * Folder [expresiones-regulares-en-flex](https://github.com/ULL-ESIT-PL/ocw-pl/tree/main/expresiones-regulares-en-flex) contains a version of the examples in section [Expresiones Regulares en Flex](https://campusvirtual.ull.es/ocw/mod/resource/view.php?id=1823)
 
-* Folder [analisis-sintactico-con-yacc`](https://github.com/ULL-ESIT-PL/ocw-pl/tree/main/analisis-sintactico-con-yacc) contains a version of the examples in section [Análisis Sintáctico con yacc](https://campusvirtual.ull.es/ocw/mod/resource/view.php?id=1835)
+### Analisis Sintactico con yacc y flex
+
+Folder [analisis-sintactico-con-yacc`](https://github.com/ULL-ESIT-PL/ocw-pl/tree/main/analisis-sintactico-con-yacc) contains a version of the examples in section [Análisis Sintáctico con yacc](https://campusvirtual.ull.es/ocw/mod/resource/view.php?id=1835). 
+A very simple calculator. 
+
+Just run `make`.
+
+```
+@crguezl ➜ /workspaces/ocw-pl/analisis-sintactico-con-yacc (main) $ make
+yacc -d -v hoc1.y
+flex -l hoc1.l
+gcc -DYYDEBUG=1 -g -o hoc1 y.tab.c lex.yy.c
+```
+To run the executable:
+
+```
+@crguezl ➜ /workspaces/ocw-pl/analisis-sintactico-con-yacc (main) $ ./hoc1 
+2+3
+number detected = 2
+char detected = +
+number detected = 3
+char detected = 
+
+result =        5
+```
 
 ## Development Container for GitHub Codespaces
 
-* Folder [.devcontainer](https://github.com/ULL-ESIT-PL/ocw-pl/tree/main/.devcontainer) contains a development container to work with the examples in a GitHub Codespace, installing flex, bison, etc. 
+* Folder [.devcontainer](https://github.com/ULL-ESIT-PL/ocw-pl/tree/main/.devcontainer) contains a development container to work with the examples in a GitHub Codespace, installing flex, bison, etc. See the [Makefile](xpresiones-regulares-en-flex/Makefile).
 
 # Lox Interpreter: C Lexical Analyzer
 * Folder [lox/C](/lox/C) contains the C version of the [lexical analyzer of the lox interpreter](https://craftinginterpreters.com/scanning-on-demand.html#the-scanner-scans) from the book [Crafting Interpreters](https://craftinginterpreters.com/). 
