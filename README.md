@@ -36,7 +36,7 @@ result =        5
 
 * Folder [.devcontainer](https://github.com/ULL-ESIT-PL/ocw-pl/tree/main/.devcontainer) contains a development container to work with the examples in a GitHub Codespace, installing flex, bison, etc. See the [Makefile](xpresiones-regulares-en-flex/Makefile).
 
-# Lox Interpreter: C Lexical Analyzer
+## Lox Interpreter: C Lexical Analyzer
 * Folder [lox/C](/lox/C) contains the C version of the [lexical analyzer of the lox interpreter](https://craftinginterpreters.com/scanning-on-demand.html#the-scanner-scans) from the book [Crafting Interpreters](https://craftinginterpreters.com/). 
 
 
