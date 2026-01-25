@@ -9,4 +9,6 @@ RUN apt-get update && apt-get install -y \
     flex \
     bison \
     gdb \
+    openjdk-17-jdk \
     && rm -rf /var/lib/apt/lists/*
+
