@@ -6,7 +6,7 @@ See the ULL OCW course [PROCESADORES DE LENGUAJES](https://campusvirtual.ull.es/
 * Folder [.devcontainer](https://github.com/ULL-ESIT-PL/ocw-pl/tree/main/.devcontainer) contains a development container to work with the examples in a GitHub Codespace, installing flex, bison, etc. 
 
 
-## Lox interpreter in Java
+## Testing the Java Lox Scanner
 
 See file [java/com/craftinginterpreters/lox/ScannerTest.java](lox/java/com/craftinginterpreters/lox/ScannerTest.java) for a simple test of the lexical analyzer of the Lox interpreter in Java.
 
