@@ -1,10 +1,10 @@
 This folder contains the [lexical analyzer of the lox interpreter](https://craftinginterpreters.com/scanning-on-demand.html#the-scanner-scans). 
 
 ```
-@crguezl ➜ /workspaces/ocw-pl/lex-lox (main) $ make clean
-rm -fR  *.o testlexer@crguezl ➜ /workspaces/ocw-pl/lex-lox (main) $ make
+@crguezl ➜ /workspaces/ocw-pl/lox/C (main) $ make clean
+rm -fR  *.o testlexer@crguezl ➜ /workspaces/ocw-pl/lox/C (main) $ make
 gcc  -I. scanner.c testlexer.c -o testlexer
-@crguezl ➜ /workspaces/ocw-pl/lex-lox (main) $ ./testlexer 
+@crguezl ➜ /workspaces/ocw-pl/lox/C (main) $ ./testlexer 
 type: 40 lexeme: 'var' line: 1
 type: 23 lexeme: 'x' line: 1
 type: 17 lexeme: '=' line: 1
