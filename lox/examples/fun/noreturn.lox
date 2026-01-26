@@ -1,0 +1,6 @@
+fun returnSum(a, b) {
+  a + b;
+}
+
+print(returnSum(3, 4));
+// expect: nil

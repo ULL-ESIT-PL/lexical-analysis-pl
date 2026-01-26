@@ -1,0 +1,43 @@
+class Breakfast {
+  init(meat, bread) {
+    this.meat = meat;
+    this.bread = bread;
+  }
+  cook() {
+    print "Eggs a-fryin'!";
+  }
+
+  serve(who) {
+    print "Enjoy your " + this.meat + " and " + this.bread + ", " + who + ".";
+  }
+}
+
+class Brunch < Breakfast {
+  init(meat, bread, drink) {
+    super.init(meat, bread);
+    if (drink) this.drink = drink;
+  }
+
+  drink() {
+    print "How about a Bloody Mary?";
+  }
+}
+
+// Store it in variables.
+var someVariable = Breakfast;
+print someVariable; // expect: Breakfast
+
+var baconAndToast = Breakfast("bacon", "toast");
+baconAndToast.serve("Dear Reader");
+
+baconAndToast.cook(); // expect: Eggs a-fryin'!
+
+fun drinkCola() {
+  print "Cola!";
+}
+
+var benedict = Brunch("ham", "English muffin", nil);
+benedict.serve("Noble Reader"); // expect: Enjoy your ham and English muffin, Noble Reader.
+benedict.drink(); // expect: How about a Bloody Mary?
+benedict.drink = drinkCola;
+benedict.drink(); // expect: Cola!
