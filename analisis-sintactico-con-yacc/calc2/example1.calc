@@ -1,0 +1,7 @@
+/* 
+To test the calculator, run:
+   make example1
+*/
+2.5+3.5 = ; // floats
+3*5=;
+2*(5-3)=
