@@ -13,12 +13,17 @@ in the file parser.y and add a custom "yyerror" with line numbers
 
 
 DIGIT    [0-9]
+ID   [a-zA-Z_][a-zA-Z0-9_]*
 %%
 [ \t\r]+       ;
 \n             ;
 "//".*         {/* ignore single-line comments */}
 "/*"([^*]|\*+[^*/])*\*+"/"   {/* ignore multi-line comments */}
 "print"        {return PRINT;}
+{ID} {
+    yylval.sval = strdup(yytext);
+    return ID;
+}
 "-"            {return MINUS;}
 "+"            {return PLUS;}
 "*"            {return MULT;}

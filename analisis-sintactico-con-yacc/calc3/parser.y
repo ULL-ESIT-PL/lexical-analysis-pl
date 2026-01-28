@@ -2,7 +2,9 @@
 %{
  #include <stdio.h>
  #include <stdlib.h>
+ #include <string.h>
  #include "lexer.h"
+ #include "symboltable.h"
 
  extern int yylineno;
 
@@ -18,7 +20,8 @@
 
 %union{
   double dval;
-  int ival;
+  //int ival;
+  char* sval;
   struct custom_data* cval; // define the pointer type for custom data structure
 }
 
@@ -27,8 +30,10 @@
 %start exp
 %token MULT DIV PLUS MINUS EQUAL L_PAREN R_PAREN COMMA PRINT LAST
 %token <dval> NUMBER
+%token <sval> ID
 %type <dval> exp
 %left COMMA
+%right EQUAL
 %left PLUS MINUS
 %left MULT DIV
 %nonassoc UMINUS
@@ -37,7 +42,27 @@
 %% 
 exp:		  NUMBER              { $$ = $1; }
             | PRINT L_PAREN exp R_PAREN    { $$ = $3; printf("%g\n", $3); }
-            | LAST                     { printf("Last command executed.\n"); }
+            | ID EQUAL exp {
+                   //printf("Assigning %g to variable %s\n", $3, $1);
+                    symbol *s = lookup($1);
+                    if (!s)
+                        s = install($1, $3);
+                    else
+                        s->value = $3;
+
+                    $$ = $3;   /* assignment is an expression */
+                    free($1);
+                }
+            | ID {
+                    symbol *s = lookup($1);
+                    if (!s) {
+                        //printf("Error at line %d: variable \"%s\" not defined\n", yylineno, $1);
+                        exit(1);
+                    } else {
+                        $$ = s->value;
+                    }
+                    free($1);
+              }
             | exp COMMA exp       { $$ = $3; }
 			| exp PLUS exp        { $$ = $1 + $3; }
 			| exp MINUS exp       { $$ = $1 - $3; }

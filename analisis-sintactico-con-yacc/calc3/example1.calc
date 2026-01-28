@@ -1,0 +1,7 @@
+/* 
+To test the calculator, run:
+   make example1
+*/
+print(2.5+3.5), // floats
+print(3*-5), // -15
+2*(5-) // Error at line 7: syntax error, unexpected R_PAREN!
