@@ -54,11 +54,21 @@ exp:		NUMBER                { $$ = $1; }
 
 int main(int argc, char **argv) {
    if (argc > 1) {
+      if (strcmp(argv[1], "-h") == 0) {
+         printf("Usage: %s [filename]\n", argv[0]);
+         printf("If filename is not provided, input is read from standard input.\n");
+         exit(0);
+      }
+      printf("Reading from file %s\n", argv[1]);
       yyin = fopen(argv[1], "r");
-      if (yyin == NULL){
-         printf("syntax: %s filename\n", argv[0]);
+      if (yyin == NULL) {
+         printf("Filename %s not found. Syntax is: %s filename\n", argv[1], argv[0]);
+         exit(1);
       }//end if
-   }//end if
+   }
+   else {
+        printf("Reading from standard input. Use Ctrl-D (Unix) or Ctrl-Z (Windows) to end.\n");
+   } //end if
    yyparse(); // Calls yylex() for tokens.
    return 0;
 }
