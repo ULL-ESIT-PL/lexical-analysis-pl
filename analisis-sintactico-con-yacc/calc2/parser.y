@@ -3,6 +3,9 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include "lexer.h"
+
+ extern int yylineno;
+
  void yyerror(const char *msg);
 
  // Here is an example how to create custom data structure
@@ -24,28 +27,24 @@
 
 %locations
 
-%start input
-%token MULT DIV PLUS MINUS EQUAL L_PAREN R_PAREN SEMICOLON
+%start exp
+%token MULT DIV PLUS MINUS EQUAL L_PAREN R_PAREN COMMA PRINT LAST
 %token <dval> NUMBER
 %type <dval> exp
-%type <cval> input
+%left COMMA
 %left PLUS MINUS
 %left MULT DIV
 %nonassoc UMINUS
 
 
 %% 
-input:	      line { $$ = malloc(sizeof(custom_data)); $$->name = "input"; $$->counter = 0; }
-			| input SEMICOLON line  { $$ = $1; $1->counter++; }
-			;
-
-line:		exp EQUAL          { printf("\t%f\n", $1);}
-			;
-
-exp:		NUMBER                { $$ = $1; }
+exp:		  NUMBER              { $$ = $1; }
+            | PRINT L_PAREN exp R_PAREN    { $$ = $3; printf("%g\n", $3); }
+            | LAST                     { printf("Last command executed.\n"); }
+            | exp COMMA exp       { $$ = $3; }
 			| exp PLUS exp        { $$ = $1 + $3; }
 			| exp MINUS exp       { $$ = $1 - $3; }
-			| exp MULT exp        { $$ = $1 * $3; }
+			| exp MULT exp        { $$ = $1 * $3;  }
 			| exp DIV exp         { if ($3==0) yyerror("divide by zero"); else $$ = $1 / $3; }
 			| MINUS exp %prec UMINUS { $$ = -$2; }
 			| L_PAREN exp R_PAREN { $$ = $2; }
@@ -74,5 +73,6 @@ int main(int argc, char **argv) {
 }
 
 void yyerror(const char *msg) {
-   printf("** Line %d: %s\n", yylloc.first_line, msg);
+    fprintf(stderr, "Error at line %d: %s\n", yylineno, msg);
 }
+

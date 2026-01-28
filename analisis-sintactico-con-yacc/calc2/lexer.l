@@ -3,17 +3,17 @@
 #define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno;
 %}
 
+%option yylineno
 %option noyywrap
 
 
 DIGIT    [0-9]
-   
 %%
-
-[ \t\r\n]+     {/* ignore spaces */}
+[ \t\r]+       ;
+\n             ;
 "//".*         {/* ignore single-line comments */}
 "/*"([^*]|\*+[^*/])*\*+"/"   {/* ignore multi-line comments */}
-\n             { yylineno++; }
+"print"        {return PRINT;}
 "-"            {return MINUS;}
 "+"            {return PLUS;}
 "*"            {return MULT;}
@@ -21,7 +21,7 @@ DIGIT    [0-9]
 "="            {return EQUAL;}
 "("            {return L_PAREN;}
 ")"            {return R_PAREN;}
-";"            {return SEMICOLON;}
+","            {return COMMA;}
 (\.{DIGIT}+)|({DIGIT}+(\.{DIGIT}*)?([eE][+-]?[0-9]+)?)   {yylval.dval = atof(yytext); return NUMBER;}
 
 .              {printf("Error at line %d: unrecognized symbol \"%s\"\n", yylloc.first_line, yytext); exit(0);}
