@@ -9,9 +9,14 @@ class Parser {
 
     void move() throws IOException { lookahead = lex.scan(); }
 
+    void error(String message) {
+        throw new Error("\n[ERROR SINTÁCTICO] Línea " + lookahead.lineNum + ": " + message + 
+          " (se encontró: " + (lookahead.tag < 256 ? (char)lookahead.tag : "TOKEN_" + lookahead.tag) + ")");
+    }
+
     void match(int t) throws IOException {
         if (lookahead.tag == t) move();
-        else throw new Error("Error de sintaxis cerca de la línea " + lex.line);
+        else error("Se esperaba un símbolo diferente");
     }
 
     public void analyze() throws IOException {
@@ -46,7 +51,7 @@ class Parser {
             System.out.print(((Word)lookahead).lexeme + " ");
             match(Tag.ID);
         } else {
-            throw new Error("Factor inesperado");
+            throw new Error("Factor inesperado en línea " + lookahead.lineNum);
         }
     }
 }

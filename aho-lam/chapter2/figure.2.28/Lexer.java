@@ -3,7 +3,8 @@ import java.util.*;
 
 class Token {
     public final int tag;
-    public Token(int t) { tag = t; }
+    public final int lineNum; // Almacena la línea donde se encontró el token
+    public Token(int t, int line) { tag = t; lineNum = line; }
 }
 
 class Tag {
@@ -12,12 +13,12 @@ class Tag {
 
 class Num extends Token {
     public final int value;
-    public Num(int v) { super(Tag.NUM); value = v; }
+    public Num(int v, int line) { super(Tag.NUM, line); value = v; }
 }
 
 class Word extends Token {
     public final String lexeme;
-    public Word(String s, int tag) { super(tag); lexeme = s; }
+    public Word(String s, int tag, int line) { super(tag, line); lexeme = s; }
 }
 
 class Lexer {
@@ -28,8 +29,8 @@ class Lexer {
     void reserve(Word w) { words.put(w.lexeme, w); }
 
     public Lexer() {
-        reserve(new Word("true", Tag.TRUE));
-        reserve(new Word("false", Tag.FALSE));
+        reserve(new Word("true", Tag.TRUE, 0));
+        reserve(new Word("false", Tag.FALSE, 0));
     }
 
     void readch() throws IOException { peek = (char) System.in.read(); }
@@ -44,7 +45,7 @@ class Lexer {
                 if (peek == '/') {
                     while (peek != '\n' && peek != (char)-1) readch();
                     continue;
-                } else return new Token('/');
+                } else return new Token('/', line); // No es un comentario      
             }
             else break;
         }
@@ -52,29 +53,32 @@ class Lexer {
         // Manejar Números
         if ( Character.isDigit(peek) ) {
             int v = 0;
+            int tokenLine = line; // Capturamos la línea actual
             do {
                 v = 10 * v + Character.digit(peek, 10);
                 readch();
             } while ( Character.isDigit(peek) );
-            return new Num(v);
+            return new Num(v, tokenLine);
         }
 
         // Manejar Identificadores y Palabras Reservadas
         if ( Character.isLetter(peek) ) {
             StringBuilder b = new StringBuilder();
+            int tokenLine = line; // Capturamos la línea actual
             do {
                 b.append(peek);
                 readch();
             } while ( Character.isLetterOrDigit(peek) );
             String s = b.toString();
             Word w = words.get(s);
-            if ( w != null ) return w;
-            w = new Word(s, Tag.ID);
+            if (w != null) return new Word(s, w.tag, tokenLine); // Retornar copia con línea actual
+
+            w = new Word(s, Tag.ID, tokenLine);
             words.put(s, w);
             return w;
         }
 
-        Token t = new Token(peek);
+        Token t = new Token(peek, line);
         peek = ' ';
         return t;
     }

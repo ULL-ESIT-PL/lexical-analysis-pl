@@ -7,5 +7,7 @@ CLASSES = $(patsubst %.java,%.class,$(wildcard *.java))
 all: $(CLASSES)
 run: all
 	cat input.txt | java Main
+error: all
+	cat input-error.txt | java Main	
 clean:
 	rm -f *.class
