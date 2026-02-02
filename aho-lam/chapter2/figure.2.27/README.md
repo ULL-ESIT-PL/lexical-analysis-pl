@@ -34,12 +34,12 @@ Este [programa en Java](Postfix.java) corresponde a la Figura 2.27 del libro "Co
 
 
 ```
-➜  chapter2 git:(main) ✗ javac Postfix.java
-➜  chapter2 git:(main) ✗ ls
-Parser.class  Postfix.class Postfix.java
-➜  chapter2 git:(main) ✗ java Postfix 
+➜  figure.2.27 git:(main) ✗ make clean
+rm -f *.class
+➜  figure.2.27 git:(main) ✗ make run  
+javac Postfix.java
+echo '5+4-3' | java Postfix
 Escribe una expresión infija (ej: 9-5+2) y pulsa Enter:
-9-5+2
-95-2+
+54+3-
 Traducción completada.
 ```

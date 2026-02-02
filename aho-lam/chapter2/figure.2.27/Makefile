@@ -6,6 +6,6 @@
 CLASSES = $(patsubst %.java,%.class,$(wildcard *.java))
 all: $(CLASSES)
 run: all
-	java Postfix
+	echo '5+4-3' | java Postfix
 clean:
 	rm -f *.class
