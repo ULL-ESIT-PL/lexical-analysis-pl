@@ -64,6 +64,8 @@ cat input.txt | java Main
 2 5 b 4 / - * 
 ```
 
+### Manejo de errores
+
 Con una entrada con errores:
 
 ```
@@ -72,11 +74,11 @@ Con una entrada con errores:
 *
 (5-
 b/ // Factor inesperado en línea 4
-)%         
-➜  figure.2.28 git:(main) make error
+)%                                                                                                                             
+➜  figure.2.28 git:(main) make error         
 cat input-error.txt | java Main
 20 5 b 
-Factor inesperado en línea 4
+Factor inesperado en línea 5 cerca de '')''
 ```
 
 ## Referencias
