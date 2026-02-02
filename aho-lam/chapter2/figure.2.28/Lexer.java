@@ -56,7 +56,7 @@ class Lexer {
                 readch();
                 if (peek == '/') {
                     while (peek != '\n' && peek != (char)-1) readch();
-                    line++;
+                    if (peek == '\n') line++;
                     continue;
                 } else return new Token('/', line); // No es un comentario      
             }
