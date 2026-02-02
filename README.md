@@ -1,4 +1,4 @@
-## Open Coursware Procesadores de Lenguajes at ULL
+## Open Courseware Procesadores de Lenguajes at ULL
 
 ### Open Coursware PL at ULL: Flex examples
 
