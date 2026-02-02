@@ -18,3 +18,14 @@ También:
 ➜  figure.2.28 git:(main) ✗ java Main < input.txt 
 2 5 b 4 / - * 
 ```
+
+O simplemente:
+
+```
+➜  figure.2.28 git:(main) make clean; make run
+rm -f *.class
+javac Lexer.java
+javac Main.java
+cat input.txt | java Main
+2 5 b 4 / - * 
+```
