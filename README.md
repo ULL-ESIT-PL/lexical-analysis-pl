@@ -1,3 +1,12 @@
+## aho-lam Folder
+
+This folder contains some examples from the book "Compilers: Principles, Techniques, and Tools" (the Dragon Book) by Aho, Lam, Sethi, and Ullman.
+
+Folder [aho-lam/chapter2/figure.2.27](aho-lam/chapter2/figure.2.27) contains a version of the Java program to translate infix expressions (no spaces, no comments, digits only)into postfix form described in Figure 2.27 of the book.
+
+Folder [aho-lam/chapter2/figure.2.28](aho-lam/chapter2/figure.2.28) contains a translator of infix expressions into postfix form corresponding to the translation scheme in Figure 2.28 of the book.
+
+
 ## Open Courseware Procesadores de Lenguajes at ULL
 
 ### Open Courseware PL at ULL: Flex examples
