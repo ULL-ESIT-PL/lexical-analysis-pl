@@ -51,7 +51,7 @@ class Parser {
             System.out.print(((Word)lookahead).lexeme + " ");
             match(Tag.ID);
         } else {
-            throw new Error("Factor inesperado en línea " + lookahead.lineNum);
+            throw new Error("Factor inesperado en línea " + lookahead.lineNum+" cerca de '"+lookahead.tokenName()+"'");
         }
     }
 }

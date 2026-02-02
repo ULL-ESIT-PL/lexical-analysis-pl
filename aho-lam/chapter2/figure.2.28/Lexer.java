@@ -5,6 +5,18 @@ class Token {
     public final int tag;
     public final int lineNum; // Almacena la línea donde se encontró el token
     public Token(int t, int line) { tag = t; lineNum = line; }
+    public String tokenName() {
+        // Si el tag es < 256, es un carácter simple (ASCII)
+        if (tag < 256) return "'" + (char)tag + "'";
+        
+        switch (tag) {
+            case Tag.NUM: return "NUM";
+            case Tag.ID: return "ID";
+            case Tag.TRUE: return "TRUE";
+            case Tag.FALSE: return "FALSE";
+            default: return Integer.toString(tag);
+        }
+    }
 }
 
 class Tag {
@@ -44,6 +56,7 @@ class Lexer {
                 readch();
                 if (peek == '/') {
                     while (peek != '\n' && peek != (char)-1) readch();
+                    line++;
                     continue;
                 } else return new Token('/', line); // No es un comentario      
             }

@@ -9,5 +9,7 @@ run: all
 	cat input.txt | java Main
 error: all
 	cat input-error.txt | java Main	
+error2: all
+	cat input-error.2.txt | java Main
 clean:
 	rm -f *.class
