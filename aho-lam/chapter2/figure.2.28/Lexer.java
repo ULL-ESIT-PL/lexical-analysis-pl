@@ -51,7 +51,7 @@ class Lexer {
         // Ignorar espacios en blanco y manejar comentarios
         for ( ; ; readch() ) {
             if ( peek == ' ' || peek == '\t' ) continue;
-            else if ( peek == '\n' ) line++;
+            else if ( peek == '\n' ) { line++; continue; }
             else if ( peek == '/' ) { // Manejo de comentarios //
                 readch();
                 if (peek == '/') {
