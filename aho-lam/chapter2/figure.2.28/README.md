@@ -47,6 +47,15 @@ cat input.txt | java Main
 2 5 b 4 / - * 
 ```
 
+Con una entrada con errores:
+
+```
+➜  figure.2.28 git:(main) make error
+cat input-error.txt | java Main
+20 5 b 
+Factor inesperado en línea 4
+```
+
 ## Referencias
 
 - Libro: *Compilers: Principles, Techniques, and Tools (2nd Edition)* Sección 2.6 "Lexical Analysis".
