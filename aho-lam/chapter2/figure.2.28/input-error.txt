@@ -1,5 +1,5 @@
 20
 *
 (5-
-b/ // Factor inesperado en línea 4
+b/ // Factor inesperado en línea ...
 )

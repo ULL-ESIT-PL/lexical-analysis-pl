@@ -69,13 +69,13 @@ cat input.txt | java Main
 Con una entrada con errores:
 
 ```
-➜  figure.2.28 git:(main) cat input-error.txt 
-20
-*
-(5-
-b/ // Factor inesperado en línea 4
-)%                                                                                                                             
-➜  figure.2.28 git:(main) make error         
+➜  figure.2.28 git:(main) cat -n input-error.txt 
+     1  20
+     2  *
+     3  (5-
+     4  b/ // Factor inesperado en línea ...
+     5  )%                                                                                                                     
+➜  figure.2.28 git:(main) ✗ make error
 cat input-error.txt | java Main
 20 5 b 
 Factor inesperado en línea 5 cerca de '')''
