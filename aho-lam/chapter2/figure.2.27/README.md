@@ -26,7 +26,7 @@ term   → 0 { print('0') }
 
 ## Descripción del programa
 
-Este programa en Java corresponde a la Figura 2.27 del libro "Compilers: Principles, Techniques, and Tools" de Aho, Lam, Sethi y Ullman. El programa traduce expresiones infijas a su forma postfija.
+Este [programa en Java](Postfix.java) corresponde a la Figura 2.27 del libro "Compilers: Principles, Techniques, and Tools" de Aho, Lam, Sethi y Ullman. El programa traduce expresiones infijas a su forma postfija.
 
 1. Compilar: Usa el comando `javac Postfix.java` en tu terminal.
 2. Correr: Usa `java Postfix`.
