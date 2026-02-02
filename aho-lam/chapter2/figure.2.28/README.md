@@ -15,6 +15,23 @@ factor → ( expr )
          | ID         { print(ID.lexeme) }
 ```
 
+El analizador léxico reconoce números (NUM) como `/[0-9]+/` y identificadores (ID) como `/[a-zA-Z][a-zA-Z0-9]*/`. Los operadores y paréntesis son reconocidos como tokens individuales. Los espacios en blanco y los comentarios de línea (`// comentario`) son ignorados.
+
+### Palabras reservadas
+
+En el analizador léxico las palabras `true`y `false` son introducidas como palabras reservadas, pero en esta gramática no están contempladas. Si se encuentran en la entrada, el programa lanzará un error indicando que se ha encontrado un factor inesperado señalando la línea y el token problemático:
+
+```
+➜  figure.2.28 git:(main) cat input-error.2.txt 
+// Factor inesperado en línea 2 cerca de 'TRUE'
+true%                                                                                                                          
+➜  figure.2.28 git:(main) make error2          
+cat input-error.2.txt | java Main
+
+Factor inesperado en línea 2 cerca de 'TRUE'
+```
+
+
 ## Ejecución del programa
 
 Para compilar y ejecutar el programa que traduce expresiones infijas a postfijas, sigue estos pasos en tu terminal:
