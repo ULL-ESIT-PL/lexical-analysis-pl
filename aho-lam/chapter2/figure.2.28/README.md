@@ -1,6 +1,6 @@
 ## Gramática
 
-Véase el esquema de traducción para traducir de expresiones en infijo a postfijos en la figura 2.28 del libro *Compilers: Principles, Techniques, and Tools (2nd Edition)*.
+Véase el esquema de traducción para traducir de expresiones en infijo a postfijo en la figura 2.28 del libro *Compilers: Principles, Techniques, and Tools (2nd Edition)*.
 
 ```
 expr   → expr + term { print('+') }
