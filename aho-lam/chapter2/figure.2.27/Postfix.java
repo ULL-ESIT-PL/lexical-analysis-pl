@@ -24,7 +24,7 @@ class Parser {
                 term();
                 System.out.print('-');
             }
-            else if (isEOF(lookahead) || 
+            else if (isEOF(lookahead) || // FOLLOW(expr) = {EOF, +, -, DIGIT}
                 Character.isDigit((char) lookahead) || 
                 lookahead == '+' || lookahead == '-') {
                 return;
