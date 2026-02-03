@@ -47,6 +47,10 @@ class Lexer {
 
     void readch() throws IOException { peek = (char) System.in.read(); }
 
+    Boolean isNotEOF() {
+        return peek != (char)-1; // -1 indica EOF en Java
+    }
+
     public Token scan() throws IOException {
         // Ignorar espacios en blanco y manejar comentarios
         for ( ; ; readch() ) {
@@ -55,7 +59,7 @@ class Lexer {
             else if ( peek == '/' ) { // Manejo de comentarios //
                 readch();
                 if (peek == '/') {
-                    while (peek != '\n' && peek != (char)-1) readch();
+                    while (peek != '\n' && isNotEOF()) readch();
                     if (peek == '\n') line++;
                     continue;
                 } else return new Token('/', line); // No es un comentario      
