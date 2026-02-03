@@ -2,7 +2,26 @@
 
 ## Definiciòn dirigida por la sintaxis
 
-La definición dirigida por la sintáxis para traducir expresiones infijas a postfijas una vez eliminada la recursión por la izquierda aparece en la figura 2.23 (*Translation Scheme after left-recursion eliminatio*) del libro *Compilers: Principles, Techniques, and Tools (2nd Edition)*. 
+La definición dirigida por la sintáxis para traducir expresiones infijas a postfijas en la figura 2.21:
+
+```
+expr  → expr + term { print('+') }
+         | expr - term { print('-') }
+         | term
+
+term  → 0 { print('0') }
+         | 1 { print('1') }
+         | 2 { print('2') }
+         | 3 { print('3') }
+         | 4 { print('4') }
+         | 5 { print('5') }     
+         | 6 { print('6') }
+         | 7 { print('7') }
+         | 8 { print('8') }
+         | 9 { print('9') }
+```
+Una vez eliminada la recursión por la izquierda aparece en la figura 2.23 (*Translation Scheme after left-recursion eliminatio*) en la sección 2.5 *A Translator for Simple Expressions* (pág 71) del libro *Compilers: Principles, Techniques, and Tools (2nd Edition)*. 
+
 Para simplificar no hay espacios en blanco y los números son de un solo dígito:
 
 ```

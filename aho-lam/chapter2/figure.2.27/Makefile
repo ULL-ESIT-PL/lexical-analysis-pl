@@ -7,5 +7,9 @@ CLASSES = $(patsubst %.java,%.class,$(wildcard *.java))
 all: $(CLASSES)
 run: all
 	echo '5+4-3' | java Postfix
+error: all
+	echo '5+x' | java Postfix
+error2: all
+	echo '5*y' | java Postfix
 clean:
 	rm -f *.class

@@ -3,6 +3,10 @@ import java.io.*;
 class Parser {
     static int lookahead;
 
+    Boolean isEOF(int peek) {
+        return (peek == (char)-1); // -1 indica EOF en Java
+    }
+
     public Parser() throws IOException {
         lookahead = System.in.read();
     }
@@ -19,10 +23,20 @@ class Parser {
                 match('-');
                 term();
                 System.out.print('-');
-            } else {
+            }
+            else if (isEOF(lookahead) || 
+                Character.isDigit((char) lookahead) || 
+                lookahead == '+' || lookahead == '-') {
                 return;
             }
+            else {
+                //System.out.print("'"+ (char) lookahead+"'");
+                throw new Error("Error de sintaxis: se esperaba un operador '+' o '-' pero se. encontró '"+
+                    (char) lookahead+"'."   
+                );
+            }
         }
+    
     }
 
     // Corresponde a la regla para los operandos (dígitos)
@@ -31,7 +45,9 @@ class Parser {
             System.out.print((char) lookahead);
             match(lookahead);
         } else {
-            throw new Error("Error de sintaxis: se esperaba un dígito.");
+            throw new Error("Error de sintaxis: se esperaba un dígito pero se encontró '"+
+                (char) lookahead+"'."
+            );
         }
     }
 
