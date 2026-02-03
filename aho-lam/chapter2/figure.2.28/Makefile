@@ -6,6 +6,7 @@
 CLASSES = $(patsubst %.java,%.class,$(wildcard *.java))
 all: $(CLASSES)
 run: all
+	echo "input: "; cat input.txt; echo 
 	cat input.txt | java Main
 error: all
 	cat input-error.txt | java Main	

@@ -96,7 +96,7 @@ class Lexer {
         }
 
         Token t = new Token(peek, line);
-        peek = ' ';
+        readch(); // Avanzar al siguiente carácter
         return t;
     }
 }
