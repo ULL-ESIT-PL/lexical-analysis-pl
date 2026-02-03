@@ -11,5 +11,7 @@ error: all
 	echo '5+x' | java Postfix
 error2: all
 	echo '5*y' | java Postfix
+error3: all
+	echo '5+4 -3' | java Postfix
 clean:
 	rm -f *.class

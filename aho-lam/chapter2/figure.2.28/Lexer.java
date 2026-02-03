@@ -3,7 +3,7 @@ import java.util.*;
 
 class Token {
     public final int tag;
-    public final int lineNum; // Almacena la línea donde se encontró el token
+    public int lineNum; // Almacena la línea donde se encontró el token
     public Token(int t, int line) { tag = t; lineNum = line; }
     public String tokenName() {
         // Si el tag es < 256, es un carácter simple (ASCII)
@@ -90,10 +90,12 @@ class Lexer {
             } while ( Character.isLetterOrDigit(peek) );
             String s = b.toString();
             Word w = words.get(s);
-            if (w != null) return new Word(s, w.tag, tokenLine); // Retornar copia con línea actual
-
+            if (w != null) {
+                w.lineNum = tokenLine; // Actualizar línea en el objeto existente
+                return w;
+            }    
             w = new Word(s, Tag.ID, tokenLine);
-            words.put(s, w);
+            //words.put(s, w);
             return w;
         }
 

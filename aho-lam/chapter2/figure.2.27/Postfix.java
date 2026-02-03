@@ -4,7 +4,8 @@ class Parser {
     static int lookahead;
 
     Boolean isEOF(int peek) {
-        return (peek == (char)-1); // -1 indica EOF en Java
+        final char EOL = (char) 10; // Código ASCII para salto de línea
+        return (peek == (char)-1) || (peek == EOL); // -1 indica EOF en Java
     }
 
     public Parser() throws IOException {
@@ -30,7 +31,7 @@ class Parser {
                 return;
             }
             else {
-                throw new Error("Error de sintaxis: se esperaba un operador '+' o '-' pero se. encontró '"+
+                throw new Error("Error de sintaxis: se esperaba un operador '+' o '-' pero se encontró '"+
                     (char) lookahead+"'."   
                 );
             }
