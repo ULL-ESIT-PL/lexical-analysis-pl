@@ -19,7 +19,50 @@ El analizador léxico reconoce números (NUM) como `/[0-9]+/` y identificadores 
 
 ### Palabras reservadas
 
-En el analizador léxico las palabras `true`y `false` son introducidas como palabras reservadas, pero en esta gramática no están contempladas. Si se encuentran en la entrada, el programa lanzará un error indicando que se ha encontrado un factor inesperado señalando la línea y el token problemático:
+En el analizador léxico las palabras `true`y `false` son introducidas como palabras reservadas, pero en esta gramática no están contempladas. 
+
+```java
+    private Hashtable<String, Word> words = new Hashtable<>();
+
+    void reserve(Word w) { words.put(w.lexeme, w); }
+    ... 
+    public Token scan() throws IOException {
+        // Ignorar espacios en blanco y manejar comentarios
+        for ( ; ; readch() ) {
+            ...
+        }
+
+        // Manejar Números
+        if ( Character.isDigit(peek) ) {
+            ...
+        }
+
+        // Manejar Identificadores y Palabras Reservadas
+        if ( Character.isLetter(peek) ) {
+            StringBuilder b = new StringBuilder();
+            int tokenLine = line; // Capturamos la línea actual
+            do {
+                b.append(peek);
+                readch();
+            } while ( Character.isLetterOrDigit(peek) );
+            String s = b.toString();
+            Word w = words.get(s);
+            if (w != null) return new Word(s, w.tag, tokenLine); // Retornar copia con línea actual
+
+            w = new Word(s, Tag.ID, tokenLine);
+            words.put(s, w);
+            return w;
+        }
+
+        Token t = new Token(peek, line);
+        peek = ' ';
+        return t;
+    }
+```
+
+
+
+Si se encuentran estas palabras en la entrada, el programa lanzará un error indicando que se ha encontrado un factor inesperado señalando la línea y el token problemático:
 
 ```
 ➜  figure.2.28 git:(main) cat input-error.2.txt 
