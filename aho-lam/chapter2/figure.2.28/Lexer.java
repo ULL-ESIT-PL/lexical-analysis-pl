@@ -95,7 +95,6 @@ class Lexer {
                 return w;
             }    
             w = new Word(s, Tag.ID, tokenLine);
-            //words.put(s, w);
             return w;
         }
 
