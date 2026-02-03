@@ -11,7 +11,7 @@ class Parser {
 
     void error(String message) {
         throw new Error("\n[ERROR SINTÁCTICO] Línea " + lookahead.lineNum + ": " + message + 
-          " (se encontró: " + (lookahead.tag < 256 ? (char)lookahead.tag : "TOKEN_" + lookahead.tag) + ")");
+          " (se encontró: '" + lookahead.tokenName()+"')");
     }
 
     void match(int t) throws IOException {
@@ -21,6 +21,7 @@ class Parser {
 
     public void analyze() throws IOException {
         expr();
+        if (lookahead.tag != (char)-1) error("Símbolo inesperado después de la expresión");
     }
 
     void expr() throws IOException {

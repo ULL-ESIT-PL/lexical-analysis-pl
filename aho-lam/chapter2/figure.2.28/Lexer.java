@@ -50,7 +50,7 @@ class Lexer {
     void readch() throws IOException { peek = (char) System.in.read(); }
 
     Boolean isNotEOF() {
-        return peek != (char)-1; // -1 indica EOF en Java
+        return peek != (char)-1; // System.in.read return -1 if the end of the stream is reached
     }
 
     public Token scan() throws IOException {

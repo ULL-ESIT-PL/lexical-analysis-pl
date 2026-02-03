@@ -14,5 +14,7 @@ error: all
 error2: all
 	echo "true" | java Main
 	#cat input-error.2.txt | java Main
+error3: all
+	echo ' 32 30    ' | java Main
 clean:
 	rm -f *.class
