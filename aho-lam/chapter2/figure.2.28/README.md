@@ -27,18 +27,14 @@ En el analizador léxico las palabras `true`y `false` son introducidas como pala
     void reserve(Word w) { words.put(w.lexeme, w); }
     ... 
     public Token scan() throws IOException {
-        // Ignorar espacios en blanco y manejar comentarios
-        for ( ; ; readch() ) {
+        for ( ; ; readch() ) { // Ignorar espacios en blanco y manejar comentarios
             ...
         }
 
-        // Manejar Números
-        if ( Character.isDigit(peek) ) {
+        if ( Character.isDigit(peek) ) { // Manejar Números
             ...
         }
-
-        // Manejar Identificadores y Palabras Reservadas
-        if ( Character.isLetter(peek) ) {
+        if ( Character.isLetter(peek) ) { // Manejar Identificadores y Palabras Reservadas
             StringBuilder b = new StringBuilder();
             int tokenLine = line; // Capturamos la línea actual
             do {
