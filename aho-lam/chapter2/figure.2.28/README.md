@@ -22,8 +22,8 @@ El analizador léxico reconoce números (NUM) como `/[0-9]+/` y identificadores 
 En el analizador léxico las palabras `true`y `false` son introducidas como palabras reservadas, pero en esta gramática no están contempladas. 
 
 ```java
+    ...
     private Hashtable<String, Word> words = new Hashtable<>();
-
     void reserve(Word w) { words.put(w.lexeme, w); }
     ... 
     public Token scan() throws IOException {
