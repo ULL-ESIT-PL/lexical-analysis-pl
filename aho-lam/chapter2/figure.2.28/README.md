@@ -43,10 +43,12 @@ En el analizador léxico las palabras `true`y `false` son introducidas como pala
             } while ( Character.isLetterOrDigit(peek) );
             String s = b.toString();
             Word w = words.get(s);
-            if (w != null) return new Word(s, w.tag, tokenLine); // Es palabra reservada pero usamos la linea actual
-            w = new Word(s, Tag.ID, tokenLine); // Es un identificador
-            words.put(s, w); // Guardarlo en la tabla para futuros encuentros
-            return w;
+            if (w != null) {
+                w.lineNum = tokenLine; // Actualizar línea en el objeto existente
+                return w;
+            }    
+            w = new Word(s, Tag.ID, tokenLine);
+            return w; // Es un identificador
         }
 
         Token t = new Token(peek, line);
