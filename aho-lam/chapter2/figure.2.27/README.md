@@ -62,3 +62,25 @@ Escribe una expresión infija (ej: 9-5+2) y pulsa Enter:
 54+3-
 Traducción completada.
 ```
+
+Se ha extendido el programa para manejar mejor los errores de sintaxis, añadiendo el control del 
+conjunto FOLLOW de la variable `expr` :
+
+```
+➜  figure.2.27 git:(main) make error
+javac Postfix.java
+echo '5+x' | java Postfix
+Escribe una expresión infija (ej: 9-5+2) y pulsa Enter:
+5Exception in thread "main" java.lang.Error: Error de sintaxis: se esperaba un dígito pero se encontró 'x'.
+        at Parser.term(Postfix.java:47)
+        at Parser.expr(Postfix.java:20)
+        at Postfix.main(Postfix.java:67)
+make: *** [error] Error 1
+➜  figure.2.27 git:(main) ✗ make error2
+echo '5*y' | java Postfix
+Escribe una expresión infija (ej: 9-5+2) y pulsa Enter:
+5Exception in thread "main" java.lang.Error: Error de sintaxis: se esperaba un operador '+' o '-' pero se. encontró '*'.
+        at Parser.expr(Postfix.java:33)
+        at Postfix.main(Postfix.java:67)
+make: *** [error2] Error 1
+```

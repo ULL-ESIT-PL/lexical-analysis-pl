@@ -30,7 +30,6 @@ class Parser {
                 return;
             }
             else {
-                //System.out.print("'"+ (char) lookahead+"'");
                 throw new Error("Error de sintaxis: se esperaba un operador '+' o '-' pero se. encontró '"+
                     (char) lookahead+"'."   
                 );
