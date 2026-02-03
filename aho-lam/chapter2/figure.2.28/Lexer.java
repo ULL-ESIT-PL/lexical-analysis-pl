@@ -35,14 +35,16 @@ class Word extends Token {
 
 class Lexer {
     public int line = 1;
-    private char peek = ' ';
+    private char peek = '\0';
     private Hashtable<String, Word> words = new Hashtable<>();
 
     void reserve(Word w) { words.put(w.lexeme, w); }
 
-    public Lexer() {
+    public Lexer() throws IOException { // constructor
+        readch();
         reserve(new Word("true", Tag.TRUE, 0));
         reserve(new Word("false", Tag.FALSE, 0));
+
     }
 
     void readch() throws IOException { peek = (char) System.in.read(); }
@@ -96,7 +98,7 @@ class Lexer {
         }
 
         Token t = new Token(peek, line);
-        readch(); // Avanzar al siguiente carácter
+        peek = ' ';
         return t;
     }
 }
