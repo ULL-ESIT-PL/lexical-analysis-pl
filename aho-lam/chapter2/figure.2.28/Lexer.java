@@ -17,6 +17,19 @@ class Token {
             default: return Integer.toString(tag);
         }
     }
+
+    public String toString() {
+        String result = "Token " + tokenName() + " (Line " + lineNum + ")";
+        switch (tag) {
+            case Tag.NUM:
+                result += ", Value: " + ((Num)this).value;
+                break;
+            case Tag.ID:
+                result += ", Lexeme: " + ((Word)this).lexeme;
+                break;
+        }
+        return result; 
+    }
 }
 
 class Tag {

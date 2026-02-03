@@ -10,8 +10,8 @@ class Parser {
     void move() throws IOException { lookahead = lex.scan(); }
 
     void error(String message) {
-        throw new Error("\n[ERROR SINTÁCTICO] Línea " + lookahead.lineNum + ": " + message + 
-          " (se encontró: '" + lookahead.tokenName()+"')");
+        throw new Error("\n[ERROR SINTÁCTICO] "+ message + 
+          " (se encontró: '" + lookahead+",')");
     }
 
     void match(int t) throws IOException {
@@ -21,7 +21,9 @@ class Parser {
 
     public void analyze() throws IOException {
         expr();
-        if (lookahead.tag != (char)-1) error("Símbolo inesperado después de la expresión");
+        if (this.lex.isNotEOF()) {
+            error("Símbolo inesperado después de la expresión");
+        }
     }
 
     void expr() throws IOException {
@@ -52,7 +54,7 @@ class Parser {
             System.out.print(((Word)lookahead).lexeme + " ");
             match(Tag.ID);
         } else {
-            throw new Error("Factor inesperado en línea " + lookahead.lineNum+" cerca de '"+lookahead.tokenName()+"'");
+            throw new Error("Factor inesperado cerca de "+lookahead);
         }
     }
 }
