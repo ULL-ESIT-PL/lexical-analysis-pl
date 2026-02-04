@@ -33,6 +33,9 @@ Para simplificar, en este ejercicio solo se pide imprimir una cadena con los blo
     x:int;
     y:char;
 }
+```
+
+La definición dirigida por la sintáxis es la siguiente:
 
 ```antlr
 program → { top = null; } block
