@@ -20,7 +20,7 @@ $$Scope: Usage \longrightarrow Declaration$$
 
 donde `Usage` es la ocurrencia de un identificador en una expresión y `Declaration` es la declaración correspondiente que aplica a esa ocurrencia.
 
-```antlr
+```bnf
 program → { top = null; } block
 block → '{' 
             { stmts = top; top = new Env(top); print("{"); } 
