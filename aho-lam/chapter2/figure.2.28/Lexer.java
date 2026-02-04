@@ -57,6 +57,12 @@ class Lexer {
         readch();
         reserve(new Word("true", Tag.TRUE, 0));
         reserve(new Word("false", Tag.FALSE, 0));
+        // reserve( new Word("if",    Tag.IF)    );
+        // reserve( new Word("else",  Tag.ELSE)  );
+        // reserve( new Word("while", Tag.WHILE) );
+        // reserve( new Word("do",    Tag.DO)    );
+        // reserve( new Word("break", Tag.BREAK) );
+    
 
     }
 
@@ -111,6 +117,11 @@ class Lexer {
             return w;
         }
 
+        // Verificar EOF antes de crear el token
+        if (peek == (char)-1) {
+            return null; // EOF
+        }
+        
         Token t = new Token(peek, line);
         peek = ' ';
         return t;

@@ -5,6 +5,10 @@ class Parser {
     private Lexer lex;
     private Token lookahead;
 
+    Boolean isNotEOF(Token t) {
+        return t != null; // EOF is represented by null
+    }
+
     public Parser(Lexer l) throws IOException { lex = l; move(); }
 
     void move() throws IOException { lookahead = lex.scan(); }
@@ -15,20 +19,20 @@ class Parser {
     }
 
     void match(int t) throws IOException {
-        if (lookahead.tag == t) move();
+        if (isNotEOF(lookahead) && lookahead.tag == t) move();
         else error("Se esperaba un símbolo diferente");
     }
 
     public void analyze() throws IOException {
         expr();
-        if (this.lex.isNotEOF()) {
-            error("Símbolo inesperado después de la expresión");
+        if (isNotEOF(lookahead)) {
+            error("Se esperaba el final del fichero. Símbolo inesperado después de la expresión");
         }
     }
 
     void expr() throws IOException {
         term();
-        while (lookahead.tag == '+' || lookahead.tag == '-') {
+        while (lookahead != null && (lookahead.tag == '+' || lookahead.tag == '-')) {
             int op = lookahead.tag;
             move(); term();
             System.out.print((char)op + " ");
@@ -37,7 +41,7 @@ class Parser {
 
     void term() throws IOException {
         factor();
-        while (lookahead.tag == '*' || lookahead.tag == '/') {
+        while (lookahead != null && (lookahead.tag == '*' || lookahead.tag == '/')) {
             int op = lookahead.tag;
             move(); factor();
             System.out.print((char)op + " ");
@@ -45,7 +49,9 @@ class Parser {
     }
 
     void factor() throws IOException {
-        if (lookahead.tag == '(') {
+        if (lookahead == null) {
+            throw new Error("Factor inesperado: EOF");
+        } else if (lookahead.tag == '(') {
             match('('); expr(); match(')');
         } else if (lookahead.tag == Tag.NUM) {
             System.out.print(((Num)lookahead).value + " ");
