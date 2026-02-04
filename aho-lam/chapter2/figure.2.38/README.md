@@ -54,5 +54,5 @@ factor → ID        {
                       s = top.get(id.lexeme);
                       print(id.lexeme);
                       print(":" + s.type);
-                }
+                   }
 ```
