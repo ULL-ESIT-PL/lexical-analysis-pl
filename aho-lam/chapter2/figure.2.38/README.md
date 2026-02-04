@@ -14,6 +14,11 @@ Sigue la definición dirigida por la sintáxis de la Figura 2.38 de la sección 
     y;
 }
 ```
+y se trata de computar la función de Ámbito:
+
+$$Scope: Usage \longrightarrow Declaration$$
+
+donde `Usage` es la ocurrencia de un identificador en una expresión y `Declaration` es la declaración correspondiente que aplica a esa ocurrencia.
 
 ```antlr
 program → { top = null; } block
