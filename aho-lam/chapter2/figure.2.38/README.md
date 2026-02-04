@@ -18,7 +18,21 @@ y se trata de computar la función de Ámbito:
 
 $$Scope: Usage \longrightarrow Declaration$$
 
-donde `Usage(uso de x) =  declaración correspondiente que aplica a esa ocurrencia de x`.
+donde $Usage$ es el conjunto de usos de variables, clases, objetos, funciones, etc. $Declarations$ 
+es el conjunto de declaraciones del programa y 
+`Usage(uso de x) =  declaración correspondiente que aplica a esa ocurrencia de x`.
+
+Para simplificar, en este ejercicio solo se pide imprimir una cadena con los bloques reedados y los "usos" anotados con sus tipos. Para el caso anterior, la salida sería:
+
+```
+{
+    {
+        x:int;
+        y:bool;
+    }
+    x:int;
+    y:char;
+}
 
 ```antlr
 program → { top = null; } block
