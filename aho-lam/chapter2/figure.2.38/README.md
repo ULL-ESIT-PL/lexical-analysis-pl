@@ -22,7 +22,7 @@ donde $Usage$ es el conjunto de usos de variables, clases, objetos, funciones, e
 es el conjunto de declaraciones del programa y 
 `Usage(uso de x) =  declaración correspondiente que aplica a esa ocurrencia de x`.
 
-Para simplificar, en este ejercicio solo se pide imprimir una cadena con los bloques reedados y los "usos" anotados con sus tipos. Para el caso anterior, la salida sería:
+Para simplificar, en este ejercicio solo se pide imprimir una cadena con los bloques reedados y los "usos" anotados con sus tipos. Para el ejemplo arriba, la salida sería:
 
 ```
 {
