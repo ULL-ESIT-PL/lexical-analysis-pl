@@ -18,7 +18,7 @@ y se trata de computar la función de Ámbito:
 
 $$Scope: Usage \longrightarrow Declaration$$
 
-donde `Usage` es la ocurrencia de un identificador en una expresión y `Declaration` es la declaración correspondiente que aplica a esa ocurrencia.
+donde `Usage(uso de x) = `  declaración correspondiente que aplica a esa ocurrencia de `x`.
 
 ```antlr
 program → { top = null; } block
