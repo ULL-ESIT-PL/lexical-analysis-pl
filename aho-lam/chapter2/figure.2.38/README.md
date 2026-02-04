@@ -35,23 +35,22 @@ Para simplificar, en este ejercicio solo se pide imprimir una cadena con los blo
 }
 ```
 
-La definición dirigida por la sintáxis es la siguiente:
+La definición dirigida por la sintáxis de la figura 2.38 es mas o menos la siguiente:
 
 ```antlr
 program → { top = null; } block
-block → '{' 
-            { stmts = top; top = new Env(top); print("{"); } 
+block → '{'               { stmts = top; top = new Env(top); print("{ "); } 
             decls stmts 
-        '}' {  top = saved; print("}"); }
+        '}'               {  top = saved; print("}"); }
 decls → decl decls | ε
 decl → type ID ';' {
                       s = new Symbol;
                       s.type = type.lexeme;
                       top.put(id.lexeme, s);
-                }
+                   }
 stmts → stmt stmts | ε
 stmt →  block | factor ';' { print(";"); }
-factor → ID {
+factor → ID        {
                       s = top.get(id.lexeme);
                       print(id.lexeme);
                       print(":" + s.type);
