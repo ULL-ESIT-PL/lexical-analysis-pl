@@ -41,7 +41,7 @@ La definición dirigida por la sintáxis de la figura 2.38 es mas o menos la sig
 program → { top = null; } block
 block → '{'               { stmts = top; top = new Env(top); print("{ "); } 
             decls stmts 
-        '}'               {  top = saved; print("}"); }
+        '}'               {  top = saved; print(" }"); }
 decls → decl decls | ε
 decl → type ID ';' {
                       s = new Symbol;
